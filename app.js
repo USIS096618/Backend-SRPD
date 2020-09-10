@@ -12,7 +12,6 @@ var Chat_Routes = require('./Routes/Chat');
 var Foro_Routes = require('./Routes/Foro');
 var Universidad_Routes = require('./Routes/Universidad');
 var GeneratorPDF_Routes =require('./Routes/GeneratorPDF');
-var Socket_Routes = requestAnimationFrame('./Routes/Socket.js')
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -32,6 +31,5 @@ app.use('/', Chat_Routes);
 app.use('/', Foro_Routes);
 app.use('/', Universidad_Routes);
 app.use('/', GeneratorPDF_Routes);
-app.use('/', Socket_Routes);
 
 module.exports = app;
