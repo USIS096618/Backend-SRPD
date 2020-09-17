@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+    <style>
+        :root{
+            --backgorundLeft: #bfdbe9;
+        }
+
+        body{
+            margin: 0px 0px;
+            padding: 0px 0px;
+        }
+
+        .flex{
+            display: flex;
+            height: 100vh;
+        }
+
+        .background-left{
+            background-color: var(--backgorundLeft);
+        }
+
+        .flex-colum{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 50px;
+        }
+
+        .max-size{
+            display: flex;
+            flex-direction: column;
+            flex: 3;
+        }
+
+        .img-round{
+            width:200px;
+            height:200px;
+            border-radius:150px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        .title{
+            border-bottom: solid 4px #000;
+        }
+
+        .content {
+            margin-top: 10px;
+        }
+
+        .flex-row{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+        .flex-row > img{
+            margin-right: 20px;
+            width: 14px;
+            height: 14px;
+        }
+        .cuadro{
+            border: solid 1px #000;
+            text-align: center;
+        }
+
+        .sub-content{
+            padding: 0px 20px;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <section class="flex">
+
+        <div class="flex-colum background-left">
+
+            <img class="img-round" src={{PerfilImage}} alt="Foto de Perfil">
+            
+            <div class="content">
+
+                <h2 class="title">SOBRE MÍ</h2>
+
+                <p>Hola, soy {{Nombre}}, naci el {{FechaNac}} y cuento con {{edad}} de edad, actualmente vivo en {{Municipio}}, {{Departamento}}.</p>
+
+            </div>
+
+            <div class="content">
+
+                <h2 class="title">CONTACTO</h2>
+
+                <div class="flex-row">
+                    <img src="https://images.vexels.com/media/users/3/157620/isolated/preview/28323eba1d9f71acc3cc92f0e043fc5c-icono-de-tel--fono-blanco-y-negro-by-vexels.png" alt="" srcset="">
+                    <label>{{Celular}}</label>
+                </div>
+
+                <div class="flex-row">
+                    <img src="https://i.pinimg.com/originals/f7/65/68/f7656824dc2d0751e46ad4732104d8f6.png" alt="" srcset="">
+                    <label>{{Correo}}</label>
+                </div>
+                
+            </div>
+
+            <div class="content">
+                <h2 class="title">RECONOCIMIENTOS</h2>
+
+                <ul>
+                    {{#each Opcional.Reconocimientos}}
+                        <li>{{this.value}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="flex-colum max-size">
+            
+            <div class="cuadro">
+                <h1>{{Nombre}}</h1>
+            </div>
+
+            <div class="content">
+                <h2 class="title">EDUCACIÓN</h2>
+
+                <div class="sub-content">
+                    <p><strong>Año de Egreso:</strong> {{Academica.Egreso}}</p>
+                    <p><strong>Universidad:</strong> {{Academica.Universidad}}</p>
+                    <p><strong>Carrera:</strong> {{Academica.Carrera}}</p>
+                    <p><strong>CUM:</strong> {{Academica.CUM}}</p>
+
+                    {{#if Academica.OtraCarrera}}
+
+                        <h2 class="title">OTRA CARRERA</h2>
+
+                        <div class="sub-content">
+                            <p><strong>Universidad:</strong> {{Academica.OtraCarrera.Universidad}}</p>
+                            <p><strong>Carrera:</strong> {{Academica.OtraCarrera.Carrera}}</p>
+                        </div>
+
+                    {{/if}}
+
+                    {{#if Academica.Postgrado}}
+
+                        <h2 class="title">POSTGRADO</h2>
+
+                        <div class="sub-content">
+                            <p><strong>Universidad: </strong> {{Academica.Postgrado.Universidad}}</p>
+                            <p><strong>Postgrado: </strong>{{Academica.Postgrado.Postgrado}}</p>
+                        </div>
+
+                    {{/if}}
+
+                </div>
+
+                <h2 class="title">ASIGNATURAS DOMINADAS</h2>
+
+                <ul>
+                    {{#if Opcional.Ciencia}}
+
+                        <li>
+                            <strong>Ciencia:</strong>
+                            {{#each Opcional.Ciencia}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                    {{#if Opcional.Lenguaje}}
+
+                        <li>
+                            <strong>Lenguaje:</strong>
+                            {{#each Opcional.Lenguaje}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                    {{#if Opcional.Matematica}}
+
+                        <li>
+                            <strong>Matematica:</strong>
+                            {{#each Opcional.Matematica}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                    {{#if Opcional.Sociales}}
+
+                        <li>
+                            <strong>Sociales:</strong>
+                            {{#each Opcional.Sociales}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                    {{#if Opcional.Informatica}}
+
+                        <li>
+                            <strong>Informatica:</strong>
+                            {{#each Opcional.Informatica}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                    {{#if Opcional.Idiomas}}
+
+                        <li>
+                            <strong>Idiomas:</strong>
+                            {{#each Opcional.Idiomas}}
+                                {{this.value}},
+                            {{/each}}
+                        </li>
+
+                    {{/if}}
+                    
+                </ul>
+
+                <h2 class="title">CLASIFICACIÓN DEL DOCENTE</h2>
+
+                <div class="sub-content">
+                    <p><strong>Nivel:</strong> {{Academica.NivelDocente}}</p>
+                    <p><strong>Categoria::</strong> {{Academica.CategoriaDocente}}</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>
