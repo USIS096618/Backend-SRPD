@@ -17,7 +17,7 @@ async function sendEmail (data, req, res, type) {
     try {
         const {_id, Nombre, Correo} = JSON.parse(data)
         const content = await global.compile('forgetEmail', {
-            link: 'http://localhost:3000/Recuperar/' + _id + '/' + type,
+            link: 'https://srpd.herokuapp.com/Recuperar/' + _id + '/' + type,
             Nombre
         })
     
