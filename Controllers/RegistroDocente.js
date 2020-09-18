@@ -131,12 +131,15 @@ const RegistroDocente = {
         })
     },
     searchDocentes: (req, res) => {
-        ModeloDocente.find({},{Nombre:1,Academica:{Carrera: 1, Egreso: 1, NivelDocente: 1, CategoriaDocente: 1},FechaNac: 1, PerfilImage: 1, latestChatTime: 1, latestChatMessage: 1},(err, result) => {
+        
+        ModeloDocente.find({},{Nombre:true,Academica:true, Academica: true,FechaNac: true, PerfilImage: true, latestChatTime: true, latestChatMessage: true},(err, result) => {
+            
+            console.log(result);
             if (err) { return res.status(200).send({
                 status: 'error',
                 err
             })}
-
+            
             return res.status(200).send({
                 status: 'success',
                 Docentes: result
@@ -145,7 +148,7 @@ const RegistroDocente = {
     },
     searchDocente: (req, res) => {
         const {id} = req.params
-        ModeloDocente.find({_id: id}, {_id : 0, __v: 0}, (err, result) => {
+        ModeloDocente.find({_id: id}, {_id : false, __v: false}, (err, result) => {
             if (err) {
                 return res.status(200).send({
                     status: 'warning',
@@ -171,7 +174,7 @@ const RegistroDocente = {
         fileName = req.file.filename;
 
         var fileExtension = req.file.originalname.split('\.');
-        var extension = fileExtension[1];
+        var extension = fileExtension[true];
 
        if (extension != 'png' && extension != 'jpeg' && extension != 'gif' && extension != 'jpg'){
             fs.unlink(filePath, (err) => {
