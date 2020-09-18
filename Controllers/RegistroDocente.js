@@ -174,7 +174,7 @@ const RegistroDocente = {
         fileName = req.file.filename;
 
         var fileExtension = req.file.originalname.split('\.');
-        var extension = fileExtension[0];
+        var extension = fileExtension[1];
 
        if (extension != 'png' && extension != 'jpeg' && extension != 'gif' && extension != 'jpg'){
             fs.unlink(filePath, (err) => {
