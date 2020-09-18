@@ -23,7 +23,7 @@ async function sendEmail (data, req, res, type) {
     
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
-            host: 'smtp.gmail.com',
+            // host: 'smtp.gmail.com',
             auth: {
                 user: 'srpd.ingsw2@gmail.com', // generated ethereal user
                 pass: 'srpd1234', // generated ethereal password
