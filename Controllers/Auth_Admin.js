@@ -134,19 +134,19 @@ var Auth_Admin_Controller = {
 
     },
     forgetPassword: async (req, res) => {
-        Registro.find({User: req.body.User}, {_id: 1, Nombre: 1, Correo: 1}, (err, InformacionUsuario) => {
+        Registro.find({User: req.body.User}, {_id: true, Nombre: true, Correo: true}, (err, InformacionUsuario) => {
             
             if (err) {
                 return res.status(500).send({ messageR: err});
             }
             else if(InformacionUsuario == null || InformacionUsuario.length == 0){
-                Docente.find({User: req.body.User}, {_id: 1, Nombre: 1, Correo: 1}, (error, InformacionUsuarioD) => {
+                Docente.find({User: req.body.User}, {_id: true, Nombre: true, Correo: true}, (error, InformacionUsuarioD) => {
                     if (error) {
                         return res.status(500).send({ messageD: error});
                     }
         
                     if (InformacionUsuarioD.length == 0) {
-                        return res.status(500).send({message: 'No existe el usuariop'});
+                        return res.status(500).send({message: 'No existe el usuario'});
                     }
                     sendEmail(JSON.stringify(InformacionUsuarioD[0]), req, res, 1)
                 })
