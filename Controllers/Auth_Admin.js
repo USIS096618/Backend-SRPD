@@ -1,5 +1,6 @@
 'use strict'
-
+const xoauth2 = require('xoauth2');
+const smtp = require('nodemailer-smtp-transport');
 const fs = require('fs-extra');
 const moment = require('moment');
 var path = require('path');
@@ -21,19 +22,31 @@ async function sendEmail (data, req, res, type) {
             Nombre
         })
     
-        const transporter = nodemailer.createTransport({
-            service: 'Gmail',
+        const generator = xoauth2.createXOAuth2Generator({
+            user: "srpd.ingsw2@gmail.com",
+            clientId: "1052328052346-e40iisa2nsr3lfamha0h247gn1ibk9ds.apps.googleusercontent.com",
+            clientSecret: "4OMvSqbjWtkFjljWSxzZTgCk",
+            refreshToken: "1//04y7G-3Qj_qJ2CgYIARAAGAQSNwF-L9IrsHTf9g67xfWzM6s14LQ4XOgGzdE5CdA7zSi_hg0Ype0EzDtPyseVivEdpCTYqQ2ZkyQ",
+            accessToken: ''
+        });
+
+        generator.on('token', function(token){
+            console.info('new token', token.accessToken);
+            // maybe you want to store this token
+        });
+
+
+
+        const transporter = nodemailer.createTransport(smtp({
+            name: 'Gmail',
             host: 'smtp.gmail.com',
-            auth: {
-                XOAuth2: {
-                  user: "srpd.ingsw2@gmail.com", // Your gmail address.
-                                                        // Not @developer.gserviceaccount.com
-                  clientId: "1052328052346-e40iisa2nsr3lfamha0h247gn1ibk9ds.apps.googleusercontent.com",
-                  clientSecret: "4OMvSqbjWtkFjljWSxzZTgCk",
-                  refreshToken: "1//04y7G-3Qj_qJ2CgYIARAAGAQSNwF-L9IrsHTf9g67xfWzM6s14LQ4XOgGzdE5CdA7zSi_hg0Ype0EzDtPyseVivEdpCTYqQ2ZkyQ"
-                }
-              }
-        })
+            port: 587,
+            secure: false,
+            ignoreTLS: false,
+            tls: { rejectUnauthorized: true },
+            debug: false,
+            auth: { xoauth2: generator }
+        }));
 
         const options = {
             from: '"SRPD" <srpd.ingsw2@gmail.com>', // sender address
