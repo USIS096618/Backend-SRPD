@@ -24,15 +24,15 @@ async function sendEmail (data, req, res, type) {
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
             auth: {
-                user: 'srpd.ingsw2@gmail.com', // generated ethereal user
-                pass: 'srpd1234', // generated ethereal password
-            },
-            tls: {
-                rejectUnauthorized: false
-            }
+                XOAuth2: {
+                  user: "srpd.ingsw2@gmail.com", // Your gmail address.
+                                                        // Not @developer.gserviceaccount.com
+                  clientId: "1052328052346-e40iisa2nsr3lfamha0h247gn1ibk9ds.apps.googleusercontent.com",
+                  clientSecret: "4OMvSqbjWtkFjljWSxzZTgCk",
+                  refreshToken: "1//04y7G-3Qj_qJ2CgYIARAAGAQSNwF-L9IrsHTf9g67xfWzM6s14LQ4XOgGzdE5CdA7zSi_hg0Ype0EzDtPyseVivEdpCTYqQ2ZkyQ"
+                }
+              }
         })
 
         const options = {
