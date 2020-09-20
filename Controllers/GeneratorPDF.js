@@ -34,9 +34,9 @@ async function sendCurriculum (data, req, res) {
         })
         
     } catch (error) {
-        console.log(error);
         res.status(200).send({
-            status: 'error'
+            status: 'error',
+            error
         })
     }
 }
