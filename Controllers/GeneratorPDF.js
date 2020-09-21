@@ -24,12 +24,14 @@ async function sendCurriculum (data, req, res) {
     
         await page.setContent(content);
         await page.emulateMediaType('screen')
-        await page.pdf({ path: __dirname + '\\PDF\\Curriculum.pdf', format: "A4", printBackground: true});
+        await page.pdf({ path: __dirname + '/PDF/Curriculum.pdf', format: "A4", printBackground: true});
         await browser.close();
     
-        res.download(__dirname + '\\PDF\\Curriculum.pdf', 'Curriculum', (err) => {
+        res.download(__dirname + '/PDF/Curriculum.pdf', 'Curriculum', (err) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    err
+                })
             }
         })
         
