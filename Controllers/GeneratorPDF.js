@@ -60,7 +60,7 @@ const convertirData = (data) => {
 
     // Sacamos la Fecha de Nacimiento
     var date = new Date(FechaNac)
-    FechaNac = `${date.getDate() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`
+    FechaNac = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
 
     // Sacamos la Fecha de Egreso
     var egreso = new Date(Egreso);
