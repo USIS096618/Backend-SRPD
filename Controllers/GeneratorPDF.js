@@ -2,7 +2,7 @@
 
 const path = require('path')
 const global = require('../Service/Global')
-const puppeteer = require('puppeteer'); 
+const puppeteer = require('puppeteer');
 const hbs = require('handlebars')
 var helpers = require('handlebars-helpers')();
 const fs = require('fs-extra');
