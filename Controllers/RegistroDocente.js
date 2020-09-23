@@ -162,7 +162,7 @@ const RegistroDocente = {
             })
         })
     },
-    saveImage: (req, res) => {
+    saveImage: async (req, res) => {
         var fileName = 'No subida';
         if (!req.file) {
             return res.status(404).send({
