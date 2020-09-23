@@ -6,6 +6,7 @@ const { default: validator } = require('validator');
 const ModeloDocente = require('../Models/RegistroDocente');
 const ModeloMined = require('../Models/Registro'); 
 const Mongoose = require('mongoose');
+const Global = require('../Service/Global');
 
 const RegistroDocente = {
 
@@ -185,71 +186,12 @@ const RegistroDocente = {
             });
         }
         else{
+            const result = await Global.UploadFile(req.file.path)
             return res.status(200).send({
                 status: 'success',
-                image: fileName
+                image: result.url
             }); 
         }
-    },
-    getImagePerfil: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Perfil/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
-    },
-    getImageTitulo: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Titulo/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
-    },
-    getImagePostgrado: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Postgrado/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
-    },
-    getImageCarrera: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/OtraCarrera/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
     },
     deleteDocente: (req, res) => {
         const {id} = req.params

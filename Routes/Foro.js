@@ -41,7 +41,5 @@ router.get('/getForos', auth, ForoController.getForos);
 router.get('/getForo/:id', auth, ForoController.getForo);
 router.post('/saveImageForo', auth, mul_Foro.single('file0'), ForoController.saveImage);
 router.post('/saveImageForoComment', auth, mul_ForoComment.single('file0'), ForoController.saveImage);
-router.get('/getImageForoComment/:image', ForoController.getImageForoComment)
-router.get('/getImageForo/:image', ForoController.getImageForo)
 
 module.exports = router;

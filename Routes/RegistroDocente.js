@@ -69,10 +69,6 @@ RouterDocente.post('/newDocente', auth, RegistroDocenteController.NewDocente);
 RouterDocente.put('/UpdateDocente', auth, RegistroDocenteController.updateDocente)
 RouterDocente.get('/getDocente/:id', auth, RegistroDocenteController.searchDocente);
 RouterDocente.get('/getDocentes', auth, RegistroDocenteController.searchDocentes);
-RouterDocente.get('/getImagePerfil/:image', RegistroDocenteController.getImagePerfil);
-RouterDocente.get('/getImageTitulo/:image', RegistroDocenteController.getImageTitulo);
-RouterDocente.get('/getImagePostrado/:image', RegistroDocenteController.getImagePostgrado);
-RouterDocente.get('/getImageOtraCarrera/:image', RegistroDocenteController.getImageCarrera);
 RouterDocente.put('/updateChatDocente', auth, RegistroDocenteController.updateChatDocente);
 RouterDocente.delete('/DeleteDocente/:id', auth, RegistroDocenteController.deleteDocente)
 

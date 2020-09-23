@@ -2,9 +2,10 @@
 
 var fs = require('fs');
 var path = require('path');
+const Global = require('../Service/Global')
 
 const Chat = {
-    saveImage: (req, res) => {
+    saveImage: async (req, res) => {
         var fileName = 'No subida';
         if (!req.file) {
             return res.status(404).send({
@@ -28,26 +29,12 @@ const Chat = {
             });
         }
         else{
+            const result = await Global.UploadFile(req.file.path)
             return res.status(200).send({
                 status: 'success',
-                image: fileName
+                image: result.url
             }); 
         }
-    },
-    getImageChat: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Chat/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
     }
 }
 

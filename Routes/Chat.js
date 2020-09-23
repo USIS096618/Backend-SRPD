@@ -23,6 +23,5 @@ const storageChat = multer.diskStorage({
 var mul_Chat = multer({dest: './upload/Chat', storage: storageChat});
 
 router.post('/saveImageChat', auth, mul_Chat.single('file0'), ChatController.saveImage);
-router.get('/getImageChat/:image', ChatController.getImageChat)
 
 module.exports = router;

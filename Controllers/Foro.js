@@ -5,6 +5,7 @@ var path = require('path');
 const Model = require('../Models/Foro')
 const {default: validator} = require('validator');
 const Mongoose = require('mongoose');
+const Global = require('../Service/Global');
 
 const Foro = {
 
@@ -141,7 +142,7 @@ const Foro = {
         });
 
     },
-    saveImage: (req, res) => {
+    saveImage: async (req, res) => {
         var fileName = 'No subida';
         if (!req.file) {
             return res.status(404).send({
@@ -165,41 +166,12 @@ const Foro = {
             });
         }
         else{
+            const result = await Global.UploadFile(req.file.path)
             return res.status(200).send({
                 status: 'success',
-                image: fileName
+                image: result.url
             }); 
         }
-    },
-    getImageForo: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Foro/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
-    },
-    getImageForoComment: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/Comment/'+file;
-
-        fs.exists(path_file, (exists) => {
-            if(exists){
-                return res.sendFile(path.resolve(path_file));
-            }else{
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'La imagen no existe !!!'
-                });
-            }
-        });
     }
 }
 
