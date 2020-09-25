@@ -55,8 +55,7 @@ const convertirData = (data) => {
     PerfilImage= 'https://srpd-backend.herokuapp.com/getImagePerfil/' + PerfilImage;
 
     // Sacamos la edad
-    var edad = moment(FechaNac, "YYYYMMDD").locale('es').fromNow();
-    edad = edad.replace('hace ', '');
+    var edad = calcularEdad(FechaNac);
 
     // Sacamos la Fecha de Nacimiento
     var date = new Date(FechaNac)
@@ -74,6 +73,19 @@ const convertirData = (data) => {
 
 
     return data;
+}
+
+const calcularEdad = (fecha) => {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    return edad;
 }
 
 const PDFS = {
