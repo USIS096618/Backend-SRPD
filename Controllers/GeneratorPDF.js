@@ -63,7 +63,6 @@ const convertirData = (data) => {
     Egreso = `${egreso.getDate() + 1}/${egreso.getMonth() + 1}/${egreso.getFullYear()}`
 
     // Insertamos los datos al JSON
-    data.PerfilImage = PerfilImage
     data.FechaNac = FechaNac;
     data.edad = edad
     data.Academica.Egreso = Egreso
