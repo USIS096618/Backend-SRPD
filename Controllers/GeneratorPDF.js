@@ -45,14 +45,11 @@ async function sendCurriculum (data, req, res) {
 
 const convertirData = (data) => {
     // Sacamos la informacion a modificar
-    var {FechaNac, Academica, PerfilImage} = data
+    var {FechaNac, Academica} = data
     var {Egreso} = Academica
 
     // Convertimos a JSON la informacion para insertar
     data = JSON.parse(JSON.stringify(data))
-
-    // Sacamos la ruta de su perfil
-    PerfilImage= 'https://srpd-backend.herokuapp.com/getImagePerfil/' + PerfilImage;
 
     // Sacamos la edad
     var edad = calcularEdad(FechaNac);
