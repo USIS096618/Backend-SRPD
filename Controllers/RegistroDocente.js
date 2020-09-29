@@ -141,7 +141,7 @@ const RegistroDocente = {
             order = -1
         }
         
-        ModeloDocente.find({},{Nombre:true,Academica:true, Academica: true,FechaNac: true, PerfilImage: true, latestChatTime: true, latestChatMessage: true}).sort({latestChatTime: order}).exec((err, result) => {
+        ModeloDocente.find({},{Nombre:true,Academica:true, Academica: true,FechaNac: true, PerfilImage: true, latestChatTime: true, latestChatMessage: true}).sort(desc ? {latestChatTime: order} : {Nombre: order}).exec((err, result) => {
             
             if (err) { return res.status(200).send({
                 status: 'error',
