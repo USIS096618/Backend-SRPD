@@ -68,7 +68,7 @@ RouterDocente.post('/SaveOtraCarrera', auth, mul_OtraCarrera.single('file0'), Re
 RouterDocente.post('/newDocente', auth, RegistroDocenteController.NewDocente);
 RouterDocente.put('/UpdateDocente', auth, RegistroDocenteController.updateDocente)
 RouterDocente.get('/getDocente/:id', auth, RegistroDocenteController.searchDocente);
-RouterDocente.get('/getDocentes', auth, RegistroDocenteController.searchDocentes);
+RouterDocente.get('/getDocentes/:desc?', auth, RegistroDocenteController.searchDocentes);
 RouterDocente.put('/updateChatDocente', auth, RegistroDocenteController.updateChatDocente);
 RouterDocente.delete('/DeleteDocente/:id', auth, RegistroDocenteController.deleteDocente)
 

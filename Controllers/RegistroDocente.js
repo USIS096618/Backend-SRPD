@@ -132,10 +132,17 @@ const RegistroDocente = {
         })
     },
     searchDocentes: (req, res) => {
+
+        const {desc} = req.params
+
+        let order = 1
         
-        ModeloDocente.find({},{Nombre:true,Academica:true, Academica: true,FechaNac: true, PerfilImage: true, latestChatTime: true, latestChatMessage: true},(err, result) => {
+        if (desc) {
+            order = -1
+        }
+        
+        ModeloDocente.find({},{Nombre:true,Academica:true, Academica: true,FechaNac: true, PerfilImage: true, latestChatTime: true, latestChatMessage: true}).sort({latestChatTime: order}).exec((err, result) => {
             
-            console.log(result);
             if (err) { return res.status(200).send({
                 status: 'error',
                 err
