@@ -15,13 +15,18 @@ const hbs = require('handlebars')
 var helpers = require('handlebars-helpers')();
 
 async function sendEmail (data, req, res, type) {
+
     try {
         const {_id, Nombre, Correo} = JSON.parse(data)
         const content = await global.compile('forgetEmail', {
             link: 'https://srpd.herokuapp.com/Recuperar/' + _id + '/' + type,
             Nombre
         })
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> ba62dfb85199f8c7a987be1c8d73b500125b492e
         const generator = xoauth2.createXOAuth2Generator({
             user: "srpd.ingsw2@gmail.com",
             clientId: "1052328052346-e40iisa2nsr3lfamha0h247gn1ibk9ds.apps.googleusercontent.com",
