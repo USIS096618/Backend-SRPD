@@ -23,11 +23,9 @@
     "multer": "^1.4.2",
     "nodemailer": "^6.4.11",
     "nodemailer-smtp-transport": "^2.7.4",
-<<<<<<< HEAD
+
     "puppeteer": "^5.2.1",
-=======
-    "puppeteer": "^5.3.0",
->>>>>>> ba62dfb85199f8c7a987be1c8d73b500125b492e
+
     "validator": "^13.1.1",
     "xoauth2": "^1.2.0"
   },
